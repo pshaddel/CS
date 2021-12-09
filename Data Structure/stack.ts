@@ -1,9 +1,9 @@
-export class Stack {
+export class Stack<T> {
   private readonly maxSize: number;
 
-  private items: any[] = [];
+  private items: T[] = [];
 
-  constructor(maxSize: number) {
+  constructor(maxSize: number = Infinity) {
     this.maxSize = maxSize;
   }
 
@@ -15,21 +15,21 @@ export class Stack {
     return this.items.length === 0;
   }
 
-  push(item: any): any {
+  push(item: T): void {
     if (this.isFull()) {
       throw new Error("Stack is full");
     }
-    return this.items.push(item);
+    this.items.push(item);
   }
 
-  pop(): any {
+  pop(): T | undefined {
     if (this.isEmpty()) {
       throw new Error("Stack is empty");
     }
     return this.items.pop();
   }
 
-  peek(): any {
+  peek(): T {
     if (this.isEmpty()) {
       throw new Error("Stack is empty");
     }

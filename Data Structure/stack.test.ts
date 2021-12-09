@@ -29,4 +29,37 @@ describe("Data Strtucture: Stack", () => {
     expect(stack.isEmpty()).toBe(true);
     expect(stack.isFull()).toBe(false);
   });
+
+  it("if we do not pass stack size it should be infinite", () => {
+    const stack = new Stack();
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+    stack.push(4);
+    stack.push(5);
+    expect(stack.isFull()).toBe(false);
+  });
+
+  it("should throw error on push when stack is full", () => {
+    const stack = new Stack(2);
+    stack.push(1);
+    stack.push(2);
+    expect(() => {
+      stack.push(3);
+    }).toThrowError("Stack is full");
+  });
+
+  it("should throw error on pop when stack is empty", () => {
+    const stack = new Stack(2);
+    expect(() => {
+      stack.pop();
+    }).toThrowError("Stack is empty");
+  });
+
+  it("should throw error on peek when stack is empty", () => {
+    const stack = new Stack(2);
+    expect(() => {
+      stack.peek();
+    }).toThrowError("Stack is empty");
+  });
 });
