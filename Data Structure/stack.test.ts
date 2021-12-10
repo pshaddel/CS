@@ -1,4 +1,4 @@
-import { Stack } from "./Stack";
+import { Stack } from "./stack";
 
 describe("Data Strtucture: Stack", () => {
   it("we should be able to initiate an empty stack with passing max size", () => {
