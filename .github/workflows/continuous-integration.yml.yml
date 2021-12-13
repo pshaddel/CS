@@ -1,46 +1,46 @@
 name: Continuous Integration
 
 on:
-    push:
-        branches: [main]
-    pull_request:
-        branches: [main]
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [14.x]
+    strategy:
+      matrix:
+        node-version: [14.x]
 
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v2
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-            - name: Set up Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Cache dependencies
-              uses: actions/cache@v2
-              with:
-                  path: |
-                      **/node_modules
-                  key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
 
-            - name: Install dependencies
-              run: npm install --legacy-peer-deps
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
 
-            # - name: Run the lints
-            #   run: npm run lint
+      - name: Run the lints
+        run: npm run lint
 
-            # - name: Run Prettier
-            #   run: npm run prettier:ci
+      - name: Run Prettier
+        run: npm run prettier:ci
 
-            - name: Run the tests
-              run: npm run test:cov
+      - name: Run the tests
+        run: npm run test:cov
 
-            - name: Upload coverage to Codecov
-              uses: codecov/codecov-action@v1
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
