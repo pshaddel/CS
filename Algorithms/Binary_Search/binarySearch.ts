@@ -1,6 +1,6 @@
 export function binarySearch(array: number[], searchNumber: number) {
   let startIndex = 0;
-  let endIndex = array.length
+  let endIndex = array.length - 1
   while (startIndex <= endIndex) {
     const checkingIndex = Math.floor((startIndex + endIndex) / 2); // 1
     const guess = array[checkingIndex]
