@@ -7,5 +7,4 @@ describe("Algorithms: Selection Sort", () => {
         expect(selectionSort([-5, 0, 3, 202])).toEqual([202, 3, 0, -5]);
         expect(selectionSort([8, 1, 3])).toEqual([8, 3, 1]);
     })
-
 })
