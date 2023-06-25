@@ -28,6 +28,34 @@ export function breadthFirstSearch(graph: Graph, node: string) {
     return false;
 }
 
+export function shortestPath(graph: Graph, start: string, end: string) {
+    const visitedNodes: string[] = [];
+    const distances: { [key: string]: number } = { [start]: 0 };
+    const queue: string[] = [start];
+
+    while (queue.length > 0) {
+        const currentNode = queue.shift();
+
+        if (currentNode === undefined) { // TS Compiler
+            continue;
+        }
+
+        if (currentNode === end) {
+            return distances[end];
+        } else {
+            // pushing neighbors into the queue
+            graph[currentNode].forEach((neighbor) => {
+                if (!visitedNodes.includes(neighbor)) {
+                    visitedNodes.push(neighbor);
+                    distances[neighbor] = distances[currentNode] + 1;
+                    queue.push(neighbor);
+                }
+            });
+        }
+    }
+    return -1; // there is no path from start to end
+}
+
 // Define a Graph
 const graph = {
     a: ['b', 'c'],
