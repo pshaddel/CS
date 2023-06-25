@@ -1,7 +1,7 @@
 module.exports = {
 	roots: ["<rootDir>"],
 	transform: {
-		"^.+\\.tsx?$": "ts-jest"
+		"^.+\\.tsx?$": ["@swc/jest", { module: { type: "commonjs" } }]
 	},
 	testEnvironment: "node",
 	testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
